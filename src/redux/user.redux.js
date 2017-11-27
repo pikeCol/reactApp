@@ -29,7 +29,8 @@ function errorMsg(msg) {
 	return {msg, type:ERROR_MSG}
 }
 
-function authSuccess(data) {
+function authSuccess(obj) {
+	const { password, ...data} = obj
 	return {type:AUTH_SUCCESS,payload:data}
 }
 
@@ -38,8 +39,10 @@ export function update(data) {
 		axios.post('/api/user/update',data)
 			.then(res=>{
 				if (res.data.status==200) {
-
-				} else {}
+					dispatch(authSuccess(res.data.data))
+				} else {
+					dispatch(errorMsg(res.data.msg))
+				}
 			})
 	}
 }

@@ -3,6 +3,7 @@ import { NavBar, Icon, InputItem, TextareaItem, Button } from 'antd-mobile';
 import Avatars from '../../component/avatars/avatars'
 import {connect} from 'react-redux'
 import {update} from '../../redux/user.redux'
+import {Redirect} from 'react-router-dom'
 
 @connect(
   state=>state.user,
@@ -22,6 +23,7 @@ class GeniusInfo extends React.Component {
   render() {
     return(
       <div>
+        {this.props.redirectTo?<Redirect to={this.props.redirectTo}/>:null}
         <NavBar mode="dark">牛人完善信息页面</NavBar>
         <Avatars selectAvatar={(avatarName)=>{
           this.setState({

@@ -5,11 +5,13 @@ import { BrowserRouter, Link, Route, Redirect, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import reducers from './reducer'
+import './index.css'
 
 import Login from './container/login/login'
 import Register from './container/register/register'
 import BossInfo from './container/bossinfo/bossinfo'
 import GeniusInfo from './container/geniusinfo/geniusinfo'
+import Dashboard from './container/dashboard/dashboard'
 import './config'
 
 const store = createStore( reducers, compose(
@@ -23,9 +25,11 @@ ReactDOM.render(
   (<Provider store={store}>
     <BrowserRouter>
       <Switch>
+        <Route path="/geniusinfo" component={GeniusInfo}></Route>
         <Route path="/bossinfo" component={BossInfo}></Route>
         <Route path="/login" component={Login}></Route>
         <Route path="/register" component={Register}></Route>
+        <Route component={Dashboard}></Route>
       </Switch>
     </BrowserRouter>
   </Provider>), document.getElementById('root'));
