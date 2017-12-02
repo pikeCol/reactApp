@@ -30,7 +30,8 @@ function errorMsg(msg) {
 }
 
 function authSuccess(data) {
-	return {type:AUTH_SUCCESS,payload:data}
+	let {password, ...filter} = data
+	return {type:AUTH_SUCCESS,payload:filter}
 }
 
 export function update(data) {
