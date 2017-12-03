@@ -3,6 +3,7 @@ import { NavBar, Icon, InputItem, TextareaItem, Button } from 'antd-mobile';
 import Avatars from '../../component/avatars/avatars'
 import {connect} from 'react-redux'
 import {update} from '../../redux/user.redux'
+import {Redirect} from 'react-router-dom'
 
 @connect(
   state=>state.user,
@@ -22,8 +23,11 @@ class BossInfo extends React.Component {
     })
   }
   render() {
+    const pathname = this.props.location.pathname
+    const path = (this.props.redirectTo==pathname?true:false)
     return(
       <div>
+        {!path?<Redirect to={this.props.redirectTo}/>:null}
         <NavBar mode="dark">Boss完善信息页面</NavBar>
         <Avatars selectAvatar={(avatarName)=>{
           this.setState({

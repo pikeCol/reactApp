@@ -4,6 +4,7 @@ const AUTH_SUCCESS = 'AUTH_SUCCESS'
 const REGISTER_ERROR = 'REGISTER_ERROR'
 const REGISTER_MSG = 'REGISTER_MSG'
 const ERROR_MSG = 'ERROR_MSG'
+const LOAD_DATA = 'LOAD_DATA'
 
 const initState={
 	redirectTo:'',
@@ -19,6 +20,8 @@ export function user(state=initState, action) {
 			return {...state, redirectTo:getRedirectPath(action.payload),...action.payload}
 		case ERROR_MSG:
 			return {...state,isAuth:false,msg:action.msg}
+		case LOAD_DATA:
+			return {...state,...action.payload}
 		default:
 			return state
 	}
@@ -29,18 +32,26 @@ function errorMsg(msg) {
 	return {msg, type:ERROR_MSG}
 }
 
-function authSuccess(data) {
-	let {password, ...filter} = data
-	return {type:AUTH_SUCCESS,payload:filter}
+export function load_data(userinfo) {
+	return {payload: userinfo, type:LOAD_DATA}
 }
+
+
+function authSuccess(obj) {
+	// const { password, ...data} = obj
+	return {type:AUTH_SUCCESS,payload:obj}
+}
+
 
 export function update(data) {
 	return dispatch=>{
 		axios.post('/api/user/update',data)
 			.then(res=>{
 				if (res.data.status==200) {
-
-				} else {}
+					dispatch(authSuccess(res.data.data))
+				} else {
+					dispatch(errorMsg(res.data.msg))
+				}
 			})
 	}
 }
