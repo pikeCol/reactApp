@@ -3,30 +3,24 @@ import { List, InputItem, WingBlank, WhiteSpace, Button } from 'antd-mobile'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {login} from '../../redux/user.redux'
+import userFormWrap from '../../component/userform/userform'
+
 @connect(
 	state=>state.user,
 	{login}
 )
+@userFormWrap
 class Login extends Component {
-	state={
-		username:'',
-		password:''
-	}
 	login =() =>{
-		this.props.login(this.state)
-	}
-	handleChange = (key, val) => {
-		this.setState({
-			[key]:val
-		})
+		this.props.login(this.props.state)
 	}
 	render() {
 		return (
 			<div>
 				<WhiteSpace />
 				<List>
-					<InputItem onChange={(v)=>this.handleChange('username',v)}>用户名</InputItem>
-					<InputItem onChange={(v)=>this.handleChange('password',v)}>密码</InputItem>
+					<InputItem onChange={(v)=>this.props.handleChange('username',v)}>用户名</InputItem>
+					<InputItem onChange={(v)=>this.props.handleChange('password',v)}>密码</InputItem>
 				</List>
 				<WhiteSpace />
 				<WingBlank>
