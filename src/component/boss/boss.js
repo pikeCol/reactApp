@@ -13,11 +13,11 @@ class Boss extends React.Component {
 		data:[]
 	}
 	componentDidMount() {
-		this.props.getUserList('boss')
+		this.props.getUserList('genius')
 	}
 	render() {
 		return(
-			<UserCard userlist={this.props.userlist}></UserCard>
+			<UserCard  userlist={this.props.userlist}></UserCard>
 		)
 	}
 }

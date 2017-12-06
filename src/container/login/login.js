@@ -17,6 +17,7 @@ class Login extends Component {
 	render() {
 		return (
 			<div>
+				{(this.props.redirectTo&&this.props.redirectTo!='/login')?<Redirect to={this.props.redirectTo} />:null}
 				<WhiteSpace />
 				<List>
 					<InputItem onChange={(v)=>this.props.handleChange('username',v)}>用户名</InputItem>
@@ -29,7 +30,6 @@ class Login extends Component {
 					<Button type="primary" onClick={()=>this.props.history.push('/register')}>注册</Button>
 				</WingBlank>
 				{this.props.msg?<p>{this.props.msg}</p>:null}
-				{this.props.redirectTo? <Redirect to={this.props.redirectTo} />:null}
 			</div>
 		)
 	}

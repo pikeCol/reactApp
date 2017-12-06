@@ -13,7 +13,7 @@ class Genius extends React.Component {
 		data:[]
 	}
 	componentDidMount() {
-		this.props.getUserList('genius')
+		this.props.getUserList('boss')
 	}
 	render() {
 		return(

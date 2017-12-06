@@ -11,8 +11,8 @@ class UserCard extends React.Component {
 	constructor(props) {
 	  super(props);
 	}
-	hanlde=(v)=>{
-		console.log(444)
+	handle=()=>{
+		this.props.history.push('/chat/kjdslfkj')
 	}
 	render() {
 		const Header = Card.Header
@@ -24,8 +24,8 @@ class UserCard extends React.Component {
 			{
 				this.props.userlist.map(v=>(
 				v.avatar?(<Card 
-									key={v.username} 
-									onClick={(v)=>that.hanlde(v)}
+									key={v.id}
+									onClick={()=>that.handle()}
 									>
 									<Header
 										title={v.title}
