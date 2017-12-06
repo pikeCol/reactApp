@@ -26,3 +26,8 @@
 	padding-right: 15px;
 	text-align: right;
 }
+.stick-footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}

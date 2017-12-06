@@ -30,9 +30,7 @@ class Auth extends React.Component {
 
 	}
 	render(){
-		return(
-			<p></p>
-		)
+		return null
 	}
 }
 export default Auth;
