@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware, compose } from 'redux'
-import { BrowserRouter, Link, Route, Redirect, Switch } from 'react-router-dom'
-import { Provider } from 'react-redux'
+import {createStore, applyMiddleware, compose} from 'redux'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
 import reducers from './reducer'
 import './index.css'
@@ -16,15 +16,13 @@ import Chat from './component/chat/chat'
 import Auth from './component/auth/auth'
 import './config'
 
-const store = createStore( reducers, compose(
-  applyMiddleware(thunk),
-  window.devToolsExtension?window.devToolsExtension():f=>f
-  )
-)
+const store = createStore(reducers, compose(applyMiddleware(thunk), window.devToolsExtension
+  ? window.devToolsExtension()
+  : f => f))
 
 // import registerServiceWorker from './registerServiceWorker';
-ReactDOM.render(
-  (<Provider store={store}>
+ReactDOM.render((
+  <Provider store={store}>
     <BrowserRouter>
       <div>
         <Auth></Auth>
@@ -39,5 +37,6 @@ ReactDOM.render(
         </Switch>
       </div>
     </BrowserRouter>
-  </Provider>), document.getElementById('root'));
+  </Provider>
+), document.getElementById('root'));
 // registerServiceWorker();
